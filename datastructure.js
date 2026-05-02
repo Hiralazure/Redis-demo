@@ -80,11 +80,13 @@ async function redisDataStructure() {
     console.log(getPRoductRating);
     const getPRoductDetails = await client.hGetAll("product:1");
     console.log(getPRoductDetails);
-   await client.hDel('product:1','rating')
-     const getUpdatedPRoductDetails = await client.hGetAll("product:1");
-     console.log(getUpdatedPRoductDetails);
+    await client.hDel("product:1", "rating");
+    const getUpdatedPRoductDetails = await client.hGetAll("product:1");
+    console.log(getUpdatedPRoductDetails);
   } catch (e) {
     console.error(e);
+  } finally {
+    await client.quit();
   }
 }
 redisDataStructure();
